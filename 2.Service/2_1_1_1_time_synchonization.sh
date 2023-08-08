@@ -12,7 +12,7 @@
 		l_tsd="ntp"
 		output="$output\n- ntp is in use on the system"
 	elif [[ "$l_chrony" != "y" && "$l_ntp" != "y" ]]; then
-		if systemctl list-units --all --type=service | grep -q 'systemd-timesyncd.service' && systemctl is-enabled systemd-timesyncd.service | grep - Eq '(enabled|disabled|masked)'; then
+		if systemctl list-units --all --type=service | grep -q 'systemd-timesyncd.service' && systemctl is-enabled systemd-timesyncd.service | grep -Eq '(enabled|disabled|masked)'; then
 			
 			l_tsd="sdtd"
 			output="$output\n- systemd-timesyncd is in use on the system"
