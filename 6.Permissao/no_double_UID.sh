@@ -8,4 +8,16 @@
             echo "Duplicate UID ($2): $users"
         fi
     done
+
+    cut -d: -f3 /etc/group | sort | uniq -d | while read x ; do
+        echo "Duplicate GID ($x) in /etc/group"
+    done
+
+    cut -d: -f1 /etc/passwd | sort | uniq -d | while read -r x; do
+        echo "Duplicate login name $x in /etc/passwd"
+    done
+
+    cut -d: -f1 /etc/group | sort | uniq -d | while read -r x; do
+        echo "Duplicate group name $x in /etc/group"
+    done
 }
